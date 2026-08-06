@@ -153,3 +153,78 @@ navLinks.forEach(link => {
 });
     }
 });
+
+/* ==========================
+   FAQ ACCORDION
+========================== */
+
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
+
+    const button = item.querySelector(".faq-question");
+    const answer = item.querySelector(".faq-answer");
+
+    button.addEventListener("click", () => {
+
+        const isOpen = item.classList.contains("active");
+
+        // Close every FAQ
+        faqItems.forEach(faq => {
+
+            faq.classList.remove("active");
+
+            faq.querySelector(".faq-answer").style.height = "0px";
+
+        });
+
+        // Open the clicked one
+        if (!isOpen) {
+
+            item.classList.add("active");
+
+            answer.style.height = answer.scrollHeight + "px";
+
+        }
+
+    });
+
+});
+
+// ==============================
+// Update aria-current on scroll
+// ==============================
+
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+const updateCurrentSection = () => {
+    let currentSection = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+
+        if (
+            window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight
+        ) {
+            currentSection = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.removeAttribute("aria-current");
+
+        if (link.getAttribute("href") === `#${currentSection}`) {
+            link.setAttribute("aria-current", "page");
+        }
+    });
+};
+
+window.addEventListener("scroll", updateCurrentSection);
+
+window.addEventListener("load", updateCurrentSection);
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
