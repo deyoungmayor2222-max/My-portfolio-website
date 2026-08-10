@@ -416,6 +416,7 @@ transition: transform var(--transition),
 
 .project-actions{
     display:flex;
+    width: 50%;
     gap:12px;
     margin-top:20px;
 }
@@ -434,12 +435,13 @@ transition: transform var(--transition),
     color:#fff;
 }
 
-.project-actions a:last-child{
+.project-actions a:nth-child(2){
     border:2px solid var(--primary-color);
     color:var(--primary-color);
 }
 
 .project-actions a:hover{
+    background-color: #1b9902;
     transform:translateY(-3px);
 }
 
@@ -454,8 +456,6 @@ box-shadow: 0 25px 45px rgba(0, 0, 0, .13);
     overflow: hidden;
     will-change: transform;
 }
-
-
 
 .guide-link {
     text-align: center;
@@ -1523,7 +1523,7 @@ box-shadow:0 20px 45px rgba(66, 63, 63, 0.938);
 }
 
 .result-card h3{
-    color:#fff;
+    color:#000000;
     margin-bottom:18px;
     font-size:1.25rem;
 }
